@@ -4,16 +4,23 @@ require("dotenv").config();
 
 // parse requests of content-type -application / json;
 app.use(express.json());
-let dbConnect = require("./dbConnect");
+
+const dbConnect = require("./dbConnect");
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to myMongoDB blogging app." });
+  res.json({ message: "Welcome to myMongoDB blogging app exercise 2." });
 });
 
 //this is to import routes
-let userRoutes = require("./routes/userRoutes");
+const userRoutes = require("./routes/userRoutes");
+const postRoutes = require("./routes/postRoutes");
+const commentRoutes = require("./routes/commentRoutes");
+const likeRoutes = require("./routes/likeRoutes");
 //this in URL
 app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/comments", commentRoutes);
+app.use("/api/likes", likeRoutes);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
